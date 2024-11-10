@@ -11,10 +11,12 @@ from qdrant_client.models import PointStruct, Distance, VectorParams
 env = dotenv_values(".env")
 ### Secrets using Streamlit Cloud Mechanism
 # https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management
-if 'QDRANT_URL' in st.secrets:
-    env['QDRANT_URL'] = st.secrets['QDRANT_URL']
-if 'QDRANT_API_KEY' in st.secrets:
-    env['QDRANT_API_KEY'] = st.secrets['QDRANT_API_KEY']
+# if 'QDRANT_URL' in st.secrets:
+#     env['QDRANT_URL'] = st.secrets['QDRANT_URL']
+# if 'QDRANT_API_KEY' in st.secrets:
+#     env['QDRANT_API_KEY'] = st.secrets['QDRANT_API_KEY']
+
+
 ###
 
 EMBEDDING_MODEL = "text-embedding-3-large"
@@ -46,8 +48,8 @@ def transcribe_audio(audio_bytes):
 @st.cache_resource
 def get_qdrant_client():
     return QdrantClient(
-    url=env["QDRANT_URL"], 
-    api_key=env["QDRANT_API_KEY"],
+    url="https://c947809d-a158-4665-853d-e0a23e0e2205.us-east4-0.gcp.cloud.qdrant.io:6333", 
+    api_key="BgC26UZ2B3U4ZS6eRnte1hqfFOpe6Rh0-K5nu-aYapeMjYhCsGepuA"
 )
 
 def assure_db_collection_exists():
